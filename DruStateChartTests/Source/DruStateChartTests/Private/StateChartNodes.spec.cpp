@@ -18,7 +18,7 @@ END_DEFINE_SPEC(FStateChartNodesSpec)
 
 void FStateChartNodesSpec::Define()
 {
-    using namespace StateChart_Impl;
+    using namespace DruStateChart_Impl;
 
     Describe("Should Create State Hierarchy", [this]
     {

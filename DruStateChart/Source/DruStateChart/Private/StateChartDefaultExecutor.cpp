@@ -12,7 +12,7 @@
 #include "Algo/Copy.h"
 #include "Algo/Transform.h"
 
-namespace StateChart_Impl
+namespace DruStateChart_Impl
 {
 
 template <typename T, typename TTargetAllocator, typename TSourceAllocator>
@@ -71,6 +71,11 @@ void FStateChartDefaultExecutor::AddReferencedObjects(FReferenceCollector& Colle
     }
 }
 
+FString FStateChartDefaultExecutor::GetReferencerName() const
+{
+    return TEXT("StateChartDefaultExecutor");
+}
+
 void FStateChartDefaultExecutor::ExecuteEventImpl(FConstStructView Event)
 {
     if (bExecutingPlan)
@@ -89,14 +94,12 @@ void FStateChartDefaultExecutor::ExecuteEventImpl(FConstStructView Event)
     check(ExternalEventQueue.IsEmpty());
     check(InternalEventQueue.IsEmpty());
 
-    StartNewPlan(CollectTransitions(Event.GetScriptStruct()), Event);
+    StartNewPlan(CollectTransitions(Event), FInstancedStruct(Event));
     ProcessEventsSynchronous();
 }
 
 void FStateChartDefaultExecutor::StartNewPlan(const FTransitionIndexArray& Transitions, FInstancedStruct Event)
 {
-    using namespace StateChart_Impl;
-
     check(!bExecutingPlan);
 
     if (Transitions.Num() != 0)
@@ -148,7 +151,7 @@ void FStateChartDefaultExecutor::ProcessEventsSynchronous()
 
         if (Event.IsValid())
         {
-            StartNewPlan(CollectTransitions(Event.GetScriptStruct()), Event);
+            StartNewPlan(CollectTransitions(Event), Event);
         }
     }
 }
@@ -687,9 +690,9 @@ void FStateChartDefaultExecutor::ForEachChild(FIndex StateIndex, TFunctionRef<bo
     }
 }
 
-EActionContinuationType FStateChartDefaultExecutor::ExecuteAsyncActionList(const TArray<FInstancedStruct>& ActionList, EActionContinuationType ExistingResult)
+EActionContinuationType FStateChartDefaultExecutor::ExecuteAsyncActionList(TArray<FInstancedStruct>& ActionList, EActionContinuationType ExistingResult)
 {
-    for (const FInstancedStruct& ActionStruct : ActionList)
+    for (FInstancedStruct& ActionStruct : ActionList)
     {
         if (auto* Action = ActionStruct.GetMutablePtr<FStateChartAction>())
         {

@@ -3,7 +3,7 @@
 #include "Impl/StateChartNodes.h"
 #include "Impl/StateChartElements.h"
 
-namespace StateChart_Impl
+namespace DruStateChart_Impl
 {
 
 const FIndex FIndex::None = 0xffff;

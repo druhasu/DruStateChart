@@ -63,7 +63,7 @@ void UStateChartAsset::PostLoad()
 #endif
 }
 
-const StateChart_Impl::FStateChartNodes& UStateChartAsset::GetAssembledNodes() const
+const DruStateChart_Impl::FStateChartNodes& UStateChartAsset::GetAssembledNodes() const
 {
     if (bNodesDirty)
     {

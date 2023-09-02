@@ -5,6 +5,7 @@
 #include "StateChartTypes.h"
 #include "StateChartAction.h"
 #include "StateChartCondition.h"
+#include "StateChartEvent.h"
 #include "InstancedStruct.h"
 #include "UObject/ObjectPtr.h"
 
@@ -204,6 +205,27 @@ namespace DruStateChart_Impl
         TObjectPtr<UScriptStruct> EventStruct;
     };
 
+    template <typename T>
+    struct TEventTagOp
+    {
+        /* Set this transition to trigger upon receiving event with given GameplayTag */
+        T& EventTag(FName EventTagName, bool bMatchExact = false)
+        {
+            return EventTag(FGameplayTag::RequestGameplayTag(EventTagName), bMatchExact);
+        }
+
+        /* Set this transition to trigger upon receiving event with given GameplayTag */
+        T& EventTag(const FGameplayTag& EventTag, bool bMatchExact = false)
+        {
+            check(EventTag.IsValid());
+
+            T& CastedThis = *static_cast<T*>(this);
+            CastedThis.Event<FStateChartGenericEvent>();
+            CastedThis.Condition(FStateChartGenericEventCondition(EventTag, bMatchExact));
+            return CastedThis;
+        }
+    };
+
     template<typename T>
     struct TConditionOp
     {
@@ -258,6 +280,7 @@ namespace DruStateChart_Impl
         : public DruStateChart_Impl::FBuilderBase
         , public DruStateChart_Impl::TInitialTransitionOp<FTransitionBuilder>
         , public DruStateChart_Impl::TEventOp<FTransitionBuilder>
+        , public DruStateChart_Impl::TEventTagOp<FTransitionBuilder>
         , public DruStateChart_Impl::TTargetOp<FTransitionBuilder>
         , public DruStateChart_Impl::TConditionOp<FTransitionBuilder>
         , public DruStateChart_Impl::TActionOp<FTransitionBuilder>

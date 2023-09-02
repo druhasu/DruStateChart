@@ -14,14 +14,14 @@
 
 BEGIN_DEFINE_SPEC(FStateChartExecutorSpec, "DruStateChart.StateChart Executor", EAutomationTestFlags::ClientContext | EAutomationTestFlags::EditorContext | EAutomationTestFlags::ServerContext | EAutomationTestFlags::EngineFilter)
 
-bool TestActive(const FString& State, const StateChart_Impl::FStateChartDefaultExecutor& Executor);
-bool TestNotActive(const FString& State, const StateChart_Impl::FStateChartDefaultExecutor& Executor);
+bool TestActive(const FString& State, const DruStateChart_Impl::FStateChartDefaultExecutor& Executor);
+bool TestNotActive(const FString& State, const DruStateChart_Impl::FStateChartDefaultExecutor& Executor);
 
 END_DEFINE_SPEC(FStateChartExecutorSpec)
 
 void FStateChartExecutorSpec::Define()
 {
-    using namespace StateChart_Impl;
+    using namespace DruStateChart_Impl;
 
     Describe("Initial", [this]
     {
@@ -35,7 +35,7 @@ void FStateChartExecutorSpec::Define()
             );
 
             TObjectPtr<UStateChartAsset> StateChart = Builder.Build();
-            TSharedRef<StateChart_Impl::FStateChartDefaultExecutor> Executor = MakeShared<StateChart_Impl::FStateChartDefaultExecutor>(*StateChart);
+            TSharedRef<FStateChartDefaultExecutor> Executor = MakeShared<FStateChartDefaultExecutor>(*StateChart);
 
             Executor->Execute();
 
@@ -53,7 +53,7 @@ void FStateChartExecutorSpec::Define()
             );
 
             TObjectPtr<UStateChartAsset> StateChart = Builder.Build();
-            TSharedRef<StateChart_Impl::FStateChartDefaultExecutor> Executor = MakeShared<StateChart_Impl::FStateChartDefaultExecutor>(*StateChart);
+            TSharedRef<FStateChartDefaultExecutor> Executor = MakeShared<FStateChartDefaultExecutor>(*StateChart);
 
             Executor->Execute();
 
@@ -76,7 +76,7 @@ void FStateChartExecutorSpec::Define()
             );
 
             TObjectPtr<UStateChartAsset> StateChart = Builder.Build();
-            TSharedRef<StateChart_Impl::FStateChartDefaultExecutor> Executor = MakeShared<StateChart_Impl::FStateChartDefaultExecutor>(*StateChart);
+            TSharedRef<FStateChartDefaultExecutor> Executor = MakeShared<FStateChartDefaultExecutor>(*StateChart);
 
             Executor->Execute();
 
@@ -98,7 +98,7 @@ void FStateChartExecutorSpec::Define()
             );
 
             TObjectPtr<UStateChartAsset> StateChart = Builder.Build();
-            TSharedRef<StateChart_Impl::FStateChartDefaultExecutor> Executor = MakeShared<StateChart_Impl::FStateChartDefaultExecutor>(*StateChart);
+            TSharedRef<FStateChartDefaultExecutor> Executor = MakeShared<FStateChartDefaultExecutor>(*StateChart);
 
             Executor->Execute();
 
@@ -124,7 +124,7 @@ void FStateChartExecutorSpec::Define()
             );
 
             TObjectPtr<UStateChartAsset> StateChart = Builder.Build();
-            TSharedRef<StateChart_Impl::FStateChartDefaultExecutor> Executor = MakeShared<StateChart_Impl::FStateChartDefaultExecutor>(*StateChart);
+            TSharedRef<FStateChartDefaultExecutor> Executor = MakeShared<FStateChartDefaultExecutor>(*StateChart);
 
             Executor->Execute();
             Executor->ExecuteEvent<FTestEvent>();
@@ -149,7 +149,7 @@ void FStateChartExecutorSpec::Define()
             );
 
             TObjectPtr<UStateChartAsset> StateChart = Builder.Build();
-            TSharedRef<StateChart_Impl::FStateChartDefaultExecutor> Executor = MakeShared<StateChart_Impl::FStateChartDefaultExecutor>(*StateChart);
+            TSharedRef<FStateChartDefaultExecutor> Executor = MakeShared<FStateChartDefaultExecutor>(*StateChart);
 
             Executor->Execute();
             Executor->ExecuteEvent<FTestEvent>();
@@ -182,7 +182,7 @@ void FStateChartExecutorSpec::Define()
             );
 
             TObjectPtr<UStateChartAsset> StateChart = Builder.Build();
-            TSharedRef<StateChart_Impl::FStateChartDefaultExecutor> Executor = MakeShared<StateChart_Impl::FStateChartDefaultExecutor>(*StateChart);
+            TSharedRef<FStateChartDefaultExecutor> Executor = MakeShared<FStateChartDefaultExecutor>(*StateChart);
 
             Executor->Execute();
             Executor->ExecuteEvent<FTestEvent>();
@@ -219,7 +219,7 @@ void FStateChartExecutorSpec::Define()
             );
 
             TObjectPtr<UStateChartAsset> StateChart = Builder.Build();
-            TSharedRef<StateChart_Impl::FStateChartDefaultExecutor> Executor = MakeShared<StateChart_Impl::FStateChartDefaultExecutor>(*StateChart);
+            TSharedRef<FStateChartDefaultExecutor> Executor = MakeShared<FStateChartDefaultExecutor>(*StateChart);
 
             Executor->Execute();
             Executor->ExecuteEvent<FTestEvent>();
@@ -251,7 +251,7 @@ void FStateChartExecutorSpec::Define()
             );
 
             TObjectPtr<UStateChartAsset> StateChart = Builder.Build();
-            TSharedRef<StateChart_Impl::FStateChartDefaultExecutor> Executor = MakeShared<StateChart_Impl::FStateChartDefaultExecutor>(*StateChart);
+            TSharedRef<FStateChartDefaultExecutor> Executor = MakeShared<FStateChartDefaultExecutor>(*StateChart);
 
             Executor->Execute();
             Executor->ExecuteEvent<FTestEvent>();
@@ -279,7 +279,7 @@ void FStateChartExecutorSpec::Define()
             );
 
             TObjectPtr<UStateChartAsset> StateChart = Builder.Build();
-            TSharedRef<StateChart_Impl::FStateChartDefaultExecutor> Executor = MakeShared<StateChart_Impl::FStateChartDefaultExecutor>(*StateChart);
+            TSharedRef<FStateChartDefaultExecutor> Executor = MakeShared<FStateChartDefaultExecutor>(*StateChart);
 
             UTestStateHandler* InstancedHandler = nullptr;
             Executor->OnStateHandlerCreated().AddLambda([&](UStateHandler& InHandler)
@@ -307,7 +307,7 @@ void FStateChartExecutorSpec::Define()
             );
 
             TObjectPtr<UStateChartAsset> StateChart = Builder.Build();
-            TSharedRef<StateChart_Impl::FStateChartDefaultExecutor> Executor = MakeShared<StateChart_Impl::FStateChartDefaultExecutor>(*StateChart);
+            TSharedRef<FStateChartDefaultExecutor> Executor = MakeShared<FStateChartDefaultExecutor>(*StateChart);
 
             UTestStateHandler* InstancedHandler = nullptr;
             Executor->OnStateHandlerCreated().AddLambda([&](UStateHandler& InHandler)
@@ -336,7 +336,7 @@ void FStateChartExecutorSpec::Define()
             );
 
             TObjectPtr<UStateChartAsset> StateChart = Builder.Build();
-            TSharedRef<StateChart_Impl::FStateChartDefaultExecutor> Executor = MakeShared<StateChart_Impl::FStateChartDefaultExecutor>(*StateChart);
+            TSharedRef<FStateChartDefaultExecutor> Executor = MakeShared<FStateChartDefaultExecutor>(*StateChart);
 
             UTestStateHandler* InstancedHandler = nullptr;
             Executor->OnStateHandlerCreated().AddLambda([&](UStateHandler& InHandler)
@@ -371,7 +371,7 @@ void FStateChartExecutorSpec::Define()
             );
 
             TObjectPtr<UStateChartAsset> StateChart = Builder.Build();
-            TSharedRef<StateChart_Impl::FStateChartDefaultExecutor> Executor = MakeShared<StateChart_Impl::FStateChartDefaultExecutor>(*StateChart);
+            TSharedRef<FStateChartDefaultExecutor> Executor = MakeShared<FStateChartDefaultExecutor>(*StateChart);
 
             Executor->Execute();
             Executor->ExecuteEvent<FTestEvent>();
@@ -395,7 +395,7 @@ void FStateChartExecutorSpec::Define()
             );
 
             TObjectPtr<UStateChartAsset> StateChart = Builder.Build();
-            TSharedRef<StateChart_Impl::FStateChartDefaultExecutor> Executor = MakeShared<StateChart_Impl::FStateChartDefaultExecutor>(*StateChart);
+            TSharedRef<FStateChartDefaultExecutor> Executor = MakeShared<FStateChartDefaultExecutor>(*StateChart);
 
             Executor->Execute();
             Executor->ExecuteEvent<FTestEvent>();
@@ -419,7 +419,7 @@ void FStateChartExecutorSpec::Define()
             );
 
             TObjectPtr<UStateChartAsset> StateChart = Builder.Build();
-            TSharedRef<StateChart_Impl::FStateChartDefaultExecutor> Executor = MakeShared<StateChart_Impl::FStateChartDefaultExecutor>(*StateChart);
+            TSharedRef<FStateChartDefaultExecutor> Executor = MakeShared<FStateChartDefaultExecutor>(*StateChart);
 
             Executor->Execute();
             Executor->ExecuteEvent<FTestEvent>();
@@ -445,7 +445,7 @@ void FStateChartExecutorSpec::Define()
             );
 
             TObjectPtr<UStateChartAsset> StateChart = Builder.Build();
-            TSharedRef<StateChart_Impl::FStateChartDefaultExecutor> Executor = MakeShared<StateChart_Impl::FStateChartDefaultExecutor>(*StateChart);
+            TSharedRef<FStateChartDefaultExecutor> Executor = MakeShared<FStateChartDefaultExecutor>(*StateChart);
 
             Executor->Execute();
 
@@ -472,7 +472,7 @@ void FStateChartExecutorSpec::Define()
             );
 
             TObjectPtr<UStateChartAsset> StateChart = Builder.Build();
-            TSharedRef<StateChart_Impl::FStateChartDefaultExecutor> Executor = MakeShared<StateChart_Impl::FStateChartDefaultExecutor>(*StateChart);
+            TSharedRef<FStateChartDefaultExecutor> Executor = MakeShared<FStateChartDefaultExecutor>(*StateChart);
 
             Executor->Execute();
             Executor->ExecuteEvent<FTestEvent>();
@@ -509,7 +509,7 @@ void FStateChartExecutorSpec::Define()
             );
 
             TObjectPtr<UStateChartAsset> StateChart = Builder.Build();
-            TSharedRef<StateChart_Impl::FStateChartDefaultExecutor> Executor = MakeShared<StateChart_Impl::FStateChartDefaultExecutor>(*StateChart);
+            TSharedRef<FStateChartDefaultExecutor> Executor = MakeShared<FStateChartDefaultExecutor>(*StateChart);
 
             Executor->Execute();
             Executor->ExecuteEvent<FTestEvent>(); // <-- transition 1
@@ -550,7 +550,7 @@ void FStateChartExecutorSpec::Define()
             );
 
             TObjectPtr<UStateChartAsset> StateChart = Builder.Build();
-            TSharedRef<StateChart_Impl::FStateChartDefaultExecutor> Executor = MakeShared<StateChart_Impl::FStateChartDefaultExecutor>(*StateChart);
+            TSharedRef<FStateChartDefaultExecutor> Executor = MakeShared<FStateChartDefaultExecutor>(*StateChart);
 
             Executor->Execute();
             Executor->ExecuteEvent<FTestEvent>(); // <-- transition 1
@@ -583,7 +583,7 @@ void FStateChartExecutorSpec::Define()
             );
 
             TObjectPtr<UStateChartAsset> StateChart = Builder.Build();
-            TSharedRef<StateChart_Impl::FStateChartDefaultExecutor> Executor = MakeShared<StateChart_Impl::FStateChartDefaultExecutor>(*StateChart);
+            TSharedRef<FStateChartDefaultExecutor> Executor = MakeShared<FStateChartDefaultExecutor>(*StateChart);
 
             Executor->Execute();
             Executor->ExecuteEvent<FTestEvent>();
@@ -623,7 +623,7 @@ void FStateChartExecutorSpec::Define()
             );
 
             TObjectPtr<UStateChartAsset> StateChart = Builder.Build();
-            TSharedRef<StateChart_Impl::FStateChartDefaultExecutor> Executor = MakeShared<StateChart_Impl::FStateChartDefaultExecutor>(*StateChart);
+            TSharedRef<FStateChartDefaultExecutor> Executor = MakeShared<FStateChartDefaultExecutor>(*StateChart);
 
             Executor->Execute();
             Executor->ExecuteEvent<FTestEvent>();
@@ -668,7 +668,7 @@ void FStateChartExecutorSpec::Define()
             );
 
             TObjectPtr<UStateChartAsset> StateChart = Builder.Build();
-            TSharedRef<StateChart_Impl::FStateChartDefaultExecutor> Executor = MakeShared<StateChart_Impl::FStateChartDefaultExecutor>(*StateChart);
+            TSharedRef<FStateChartDefaultExecutor> Executor = MakeShared<FStateChartDefaultExecutor>(*StateChart);
 
             Executor->Execute();
             Executor->ExecuteEvent<FTestEvent>();
@@ -687,12 +687,12 @@ void FStateChartExecutorSpec::Define()
     });
 }
 
-bool FStateChartExecutorSpec::TestActive(const FString& State, const StateChart_Impl::FStateChartDefaultExecutor& Executor)
+bool FStateChartExecutorSpec::TestActive(const FString& State, const DruStateChart_Impl::FStateChartDefaultExecutor& Executor)
 {
     return TestTrue(FString::Printf(TEXT("'%s' Active"), *State), Executor.GetActiveStates().ContainsByPredicate([&](auto S) { return S->FriendlyName == State; }));
 }
 
-bool FStateChartExecutorSpec::TestNotActive(const FString& State, const StateChart_Impl::FStateChartDefaultExecutor& Executor)
+bool FStateChartExecutorSpec::TestNotActive(const FString& State, const DruStateChart_Impl::FStateChartDefaultExecutor& Executor)
 {
     return TestFalse(FString::Printf(TEXT("'%s' Active"), *State), Executor.GetActiveStates().ContainsByPredicate([&](auto S) { return S->FriendlyName == State; }));
 }

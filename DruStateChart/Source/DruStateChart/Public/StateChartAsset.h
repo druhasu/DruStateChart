@@ -26,7 +26,7 @@ public:
     EActionContinuationType GetDefaultContinuationType() const { return DefaultContinuationType; }
 
     /* Returns assembled tree of nodes used by StateChartExecutor */
-    const StateChart_Impl::FStateChartNodes& GetAssembledNodes() const;
+    const DruStateChart_Impl::FStateChartNodes& GetAssembledNodes() const;
 
 protected:
     UFUNCTION(CallInEditor)
@@ -50,6 +50,6 @@ private:
     UPROPERTY(EditAnywhere, Transient, SkipSerialization)
     TArray<TObjectPtr<UTransitionDefinition>> AllTransitions;
 
-    StateChart_Impl::FStateChartNodes Nodes;
+    DruStateChart_Impl::FStateChartNodes Nodes;
     bool bNodesDirty = true;
 };

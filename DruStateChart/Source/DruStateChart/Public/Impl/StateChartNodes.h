@@ -8,7 +8,7 @@
 class UBaseStateDefinition;
 class UTransitionDefinition;
 
-namespace StateChart_Impl
+namespace DruStateChart_Impl
 {
     enum class EStateType : uint8
     {
@@ -125,4 +125,9 @@ namespace StateChart_Impl
         EStateType GetStateType(TObjectPtr<UBaseStateDefinition> Definition) const;
         bool CompareStates(UBaseStateDefinition* AState, UBaseStateDefinition* BState) const;
     };
+}
+
+static uint32 GetTypeHash(DruStateChart_Impl::FIndex Index)
+{
+    return (int32)Index;
 }

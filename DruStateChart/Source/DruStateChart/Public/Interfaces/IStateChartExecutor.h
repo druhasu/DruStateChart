@@ -35,6 +35,12 @@ public:
         ExecuteEventImpl(FConstStructView::Make(Event));
     }
 
+    /* Executed Event with provided payload */
+    void ExecuteEvent(FConstStructView Event)
+    {
+        ExecuteEventImpl(Event);
+    }
+
     /* Executes Event of requested type with default payload */
     template <typename T, TEMPLATE_REQUIRES(TModels<CStaticStructProvider, T>::Value)>
     void ExecuteEvent()

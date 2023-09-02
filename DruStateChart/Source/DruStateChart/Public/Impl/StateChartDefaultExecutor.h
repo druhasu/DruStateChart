@@ -12,7 +12,7 @@
 #include "StructView.h"
 #include "Concepts/StaticStructProvider.h"
 
-namespace StateChart_Impl
+namespace DruStateChart_Impl
 {
 
 /*
@@ -32,6 +32,7 @@ public:
 
     // Begin FGCObject overrides
     void AddReferencedObjects(FReferenceCollector& Collector) override;
+    FString GetReferencerName() const override;
     //~End FGCObject overrides
 
 private:
@@ -96,7 +97,7 @@ private:
     void ForEachParent(FIndex StateIndex, TFunctionRef<bool(FIndex, const FStateNode&)> Action) const;
     void ForEachChild(FIndex StateIndex, TFunctionRef<bool(FIndex, const FStateNode&)> Action) const;
 
-    EActionContinuationType ExecuteAsyncActionList(const TArray<FInstancedStruct>& ActionList, EActionContinuationType ExistingResult);
+    EActionContinuationType ExecuteAsyncActionList(TArray<FInstancedStruct>& ActionList, EActionContinuationType ExistingResult);
     EActionContinuationType ExecuteAsyncAction(TFunctionRef<EActionContinuationType()> Action, EActionContinuationType ExistingResult);
     bool EvaluateConditions(const FTransitionNode& TransitionNode, FConstStructView Event) const;
 

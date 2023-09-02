@@ -5,5 +5,5 @@
 
 TSharedRef<IStateChartExecutor> IStateChartExecutor::CreateDefault(UStateChartAsset& StateChartAsset, TObjectPtr<UObject> ContextObject)
 {
-	return MakeShared<StateChart_Impl::FStateChartDefaultExecutor>(StateChartAsset, ContextObject);
+    return MakeShared<DruStateChart_Impl::FStateChartDefaultExecutor>(StateChartAsset, ContextObject);
 }
